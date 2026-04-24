@@ -1,7 +1,14 @@
 .PHONY: install run dev demo test streamlit fmt lint clean
 
-install:
-	python -m pip install -r requirements.txt
+VENV := .venv
+PYTHON := $(VENV)/bin/python
+PIP := $(VENV)/bin/pip
+
+$(VENV):
+	python3 -m venv $(VENV)
+
+install: $(VENV)
+	$(PIP) install -r requirements.txt
 
 run:
 	uvicorn app.main:app --reload --port 8000
@@ -26,3 +33,4 @@ lint:
 clean:
 	rm -rf __pycache__ app/__pycache__ app/**/__pycache__
 	rm -rf chroma_db/ tmp/ .cache/
+	rm -rf $(VENV)
