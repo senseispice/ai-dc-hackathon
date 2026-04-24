@@ -56,24 +56,79 @@ def _build_context(pws: PWS, sow: ContractorSOW) -> str:
     return "\n\n".join(sections)
 
 
+def _find_gaps_list(data: dict | list) -> list[dict]:
+    """Recursively find the list of gap items in the LLM response.
+
+    Different LLMs return different shapes — Gemini likes nested keys like
+    ``gap_report.requirements_analysis``, others use ``gaps``.
+    """
+    if isinstance(data, list):
+        return data
+
+    # Try common keys
+    for key in (
+        "gaps", "gap_analysis", "requirements_analysis",
+        "gap_items", "findings",
+    ):
+        if key in data and isinstance(data[key], list):
+            return data[key]
+
+    # Recurse one level into nested dicts (e.g. {gap_report: {requirements_analysis: [...]}})
+    for v in data.values():
+        if isinstance(v, dict):
+            found = _find_gaps_list(v)
+            if found:
+                return found
+        if isinstance(v, list) and v and isinstance(v[0], dict):
+            return v
+
+    return []
+
+
+def _extract_summary(data: dict | list) -> str:
+    if isinstance(data, list):
+        return ""
+    for key in ("summary", "overall_assessment"):
+        if key in data and isinstance(data[key], str):
+            return data[key]
+    for v in data.values():
+        if isinstance(v, dict):
+            s = _extract_summary(v)
+            if s:
+                return s
+    return ""
+
+
 def _parse_response(contractor_name: str, data: dict | list) -> GapReport:
     """Convert LLM JSON output into a GapReport."""
-    if isinstance(data, dict):
-        gaps_raw = data.get("gaps", [])
-        summary = data.get("summary", "")
-    else:
-        gaps_raw = data
-        summary = ""
+    gaps_raw = _find_gaps_list(data)
+    summary = _extract_summary(data)
 
     gap_items = []
     for g in gaps_raw:
+        # Normalize field names across LLM output variations
+        req_desc = (
+            g.get("requirement_description")
+            or g.get("pws_requirement")
+            or g.get("requirement")
+            or ""
+        )
+        details = (
+            g.get("details")
+            or g.get("analysis")
+            or g.get("sow_provision")
+            or ""
+        )
+        status_raw = g.get("status", "NOT_ADDRESSED")
+        severity_raw = g.get("severity", "MEDIUM")
+
         gap_items.append(
             GapItem(
                 requirement_id=g.get("requirement_id", ""),
-                requirement_description=g.get("requirement_description", ""),
-                status=GapStatus(g.get("status", "NOT_ADDRESSED")),
-                severity=Severity(g.get("severity", "MEDIUM")),
-                details=g.get("details", ""),
+                requirement_description=req_desc,
+                status=GapStatus(status_raw),
+                severity=Severity(severity_raw),
+                details=details,
             )
         )
 

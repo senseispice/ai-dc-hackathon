@@ -142,19 +142,36 @@ class CrustDataClient:
             try:
                 await asyncio.sleep(0.25)  # rate-limit courtesy
                 results = await self.search_people(name=name, company_name=contractor_name)
-                found = any(
-                    r.get("name", "").lower() == name.lower() for r in results
-                )
                 current_co = results[0].get("company", "") if results else None
                 current_title = results[0].get("title", "") if results else None
+                name_match = any(
+                    r.get("name", "").lower() == name.lower() for r in results
+                )
+                # Verified only if found AND still at the claimed company
+                at_company = (
+                    current_co
+                    and contractor_name.lower().split()[0] in current_co.lower()
+                )
+                verified = name_match and bool(at_company)
+
+                if name_match and not at_company:
+                    notes = (
+                        f"Found but currently at {current_co}, "
+                        f"not {contractor_name}"
+                    )
+                elif verified:
+                    notes = "Verified at company"
+                else:
+                    notes = "Not found at this company"
+
                 personnel.append(
                     PersonVerification(
                         name=name,
                         claimed_role=role,
-                        verified=found,
+                        verified=verified,
                         current_company=current_co,
                         current_title=current_title,
-                        notes="Found in CrustData" if found else "Not found at this company",
+                        notes=notes,
                     )
                 )
             except Exception as exc:
@@ -195,10 +212,21 @@ class CrustDataClient:
 
         # Personnel check
         verified_count = sum(1 for p in personnel if p.verified)
+        departed = [
+            p for p in personnel
+            if not p.verified and p.current_company
+            and contractor_name.lower().split()[0] not in p.current_company.lower()
+        ]
+        for p in departed:
+            red_flags.append(
+                f"Key personnel {p.name} ({p.claimed_role}) no longer at "
+                f"{contractor_name} — now at {p.current_company}"
+            )
         if personnel:
             if verified_count / len(personnel) < 0.5:
                 red_flags.append(
-                    f"Only {verified_count}/{len(personnel)} proposed staff verified at company"
+                    f"Only {verified_count}/{len(personnel)} proposed "
+                    f"staff verified at company"
                 )
             else:
                 green_flags.append(
