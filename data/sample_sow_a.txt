@@ -1,0 +1,97 @@
+STATEMENT OF WORK
+Great Basin Restoration LLC
+Silver Creek Abandoned Mine Land Reclamation Project
+BLM-NV-2026-0042
+
+1. COMPANY OVERVIEW
+Great Basin Restoration LLC is a Reno, Nevada-based ecological restoration firm specializing in mine land reclamation and native ecosystem restoration across the Great Basin. Founded in 2009, we employ 50 professionals including restoration ecologists, hydrologists, geotechnical engineers, and certified erosion control specialists. We have successfully completed 12 mine reclamation projects totaling over 3,500 acres in Nevada, Utah, and Idaho.
+
+2. TECHNICAL APPROACH
+
+2.1 Site Assessment (Months 1-3)
+We will conduct comprehensive baseline surveys including:
+- Soil characterization: 40 soil test pits across disturbed areas, analyzing for pH, heavy metals (As, Pb, Cd, Hg), organic matter, texture, and compaction. Lab analysis by Nevada Bureau of Mines certified lab.
+- Water quality: monthly sampling at 6 stations along Silver Creek and drainage features for pH, dissolved metals, sulfate, total suspended solids, and flow.
+- Vegetation: line-point intercept transects on 20 reference plots in undisturbed sagebrush communities to establish baseline targets.
+- Wildlife: sage-grouse lek surveys within 4-mile radius; raptor nest inventory per BLM protocol.
+
+2.2 Hazard Mitigation (Months 2-6)
+- Seal 4 identified adits using polyurethane foam plug with bat-compatible grating per BLM standards
+- Regrade and stabilize 3 waste rock piles (est. 45,000 cubic yards) to 3:1 slopes or less
+- Construct passive acid mine drainage treatment: anoxic limestone drain + constructed wetland cell
+
+2.3 Soil Reconstruction (Months 4-10)
+- Strip and stockpile available topsoil from minimally disturbed areas
+- Import and blend amendments: composted organic matter (2 inches), agricultural gypsum for pH amendment on acid-generating substrates
+- Final soil profile target: minimum 12 inches of growth media with pH 6.0-7.5, organic matter > 2%
+- Rip compacted surfaces to 18-inch depth before soil placement
+
+2.4 Revegetation (Months 8-14, targeting fall and spring planting windows)
+Native seed mix — all seed sourced from Great Basin seed suppliers within 200 miles of project site, using genetically appropriate source-identified seed:
+
+Grasses (8.0 PLS lbs/acre):
+- Bluebunch wheatgrass (Pseudoroegneria spicata) — 2.5 PLS lbs/acre
+- Indian ricegrass (Achnatherum hymenoides) — 2.0 PLS lbs/acre
+- Bottlebrush squirreltail (Elymus elymoides) — 1.5 PLS lbs/acre
+- Basin wildrye (Leymus cinereus) — 1.0 PLS lbs/acre
+- Sandberg bluegrass (Poa secunda) — 1.0 PLS lbs/acre
+
+Forbs (2.0 PLS lbs/acre):
+- Lewis flax (Linum lewisii) — 0.5 PLS lbs/acre
+- Yarrow (Achillea millefolium) — 0.3 PLS lbs/acre
+- Scarlet globemallow (Sphaeralcea coccinea) — 0.3 PLS lbs/acre
+- Palmer penstemon (Penstemon palmeri) — 0.5 PLS lbs/acre
+- Silvery lupine (Lupinus argenteus) — 0.4 PLS lbs/acre
+
+Shrubs (containerized, 400 plants/acre on 10-ft spacing):
+- Wyoming big sagebrush (Artemisia tridentata ssp. wyomingensis) — 200 plants/acre
+- Bitterbrush (Purshia tridentata) — 100 plants/acre
+- Rubber rabbitbrush (Ericameria nauseosa) — 100 plants/acre
+
+Seeding method: rangeland drill on accessible slopes; broadcast + harrow on steep or rocky areas. Containerized shrub planting in fall (October-November) when soil moisture is adequate.
+
+2.5 Erosion Control
+- Wattles and straw mulch (certified weed-free) on all slopes > 15%
+- Rock check dams in drainage channels
+- Biodegradable erosion control blankets on concentrated flow areas
+- Temporary irrigation for shrub establishment (first growing season only)
+
+3. MONITORING AND ADAPTIVE MANAGEMENT
+
+3.1 Monitoring Protocol (Years 1-5)
+- Vegetation: annual line-point intercept transects (20 permanent plots), species composition, foliar cover by functional group. Sampled in July at peak biomass.
+- Soil: annual sampling (10 plots) for pH, organic matter, compaction, and heavy metals.
+- Photo points: 30 permanent photo stations, documented in spring and fall.
+- Hydrology: quarterly water quality sampling at 6 stations; continuous flow gauge at Silver Creek outlet.
+- Wildlife: annual sage-grouse lek surveys; breeding bird point counts.
+
+3.2 Performance Standards
+- Year 1: 30% ground cover (including mulch/litter); all erosion control measures functional
+- Year 3: 50% native vegetative cover; soil pH 6.0-7.5; no invasive species > 5% cover; Silver Creek water quality meeting Nevada Surface Water Quality Standards
+- Year 5: 70% native vegetative cover; species diversity (Shannon index >= 1.5); sagebrush establishment >= 1 plant per 100 sq ft; soil stability comparable to reference sites
+
+3.3 Adaptive Management Triggers
+- If native cover < 20% at Year 1: reseed failed areas in next planting window
+- If invasive species > 10% cover at any monitoring event: targeted herbicide treatment within 30 days
+- If acid mine drainage pH < 5.0 at treatment system outlet: modify limestone drain, add buffering capacity
+- If sagebrush survival < 50% at Year 2: replant with larger container stock and install browse protection
+
+4. STAFFING
+- Project Manager: Mike Reynolds, PMP, 20 years mine reclamation experience in Nevada
+- Lead Restoration Ecologist: Dr. Sarah Chen, PhD Restoration Ecology (UNR), 15 years experience, Society for Ecological Restoration certified. Lead ecologist on 8 successful BLM mine reclamation projects.
+- Senior Hydrologist: Lisa Park, PE, PH, 12 years experience in acid mine drainage treatment
+- Field Operations Lead: Tom Begay, CPESC, 10 years experience in erosion control and revegetation
+- Botanist/Seed Specialist: Ana Morales, 8 years native seed sourcing and Great Basin revegetation
+
+5. PAST PERFORMANCE
+- BLM Nevada Silver Peak Mine Reclamation (150 acres, 2019-2024): Achieved 85% native cover at Year 3. BLM Excellence Award 2025.
+- BLM Idaho Boise Basin AML (300 acres, 2018-2023): 72% native cover at Year 5; all water quality targets met.
+- USFS Humboldt-Toiyabe Mine Closure (80 acres, 2020-2024): Complex acid drainage site; passive treatment system functioning at design capacity.
+
+6. TIMELINE
+Months 1-3: Site assessment and baseline surveys
+Months 2-6: Hazard mitigation and AMD treatment construction
+Months 4-10: Soil reconstruction
+Months 8-14: Revegetation (fall + spring planting windows)
+Months 12-24: Establishment period monitoring and maintenance
+Years 3-5: Annual monitoring, reporting, and adaptive management

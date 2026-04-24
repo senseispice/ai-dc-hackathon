@@ -1,0 +1,18 @@
+{
+  "key_clauses": {
+    "FAR 15.304": "Evaluation factors and significant subfactors — all evaluation factors and significant subfactors that will affect contract award and their relative importance shall be stated in the solicitation.",
+    "FAR 15.305": "Proposal evaluation — the source selection authority may reject all proposals received in response to a solicitation if doing so is in the best interest of the Government.",
+    "FAR 36.6": "Architect-Engineer services — applies to environmental engineering services that may overlap with restoration.",
+    "FAR 37.601": "Performance-based service contracting — preference for performance-based statements of work.",
+    "FAR 52.219-14": "Limitations on subcontracting — relevant for small business set-asides in restoration work.",
+    "FAR 52.236-5": "Material and workmanship — applies to construction-related restoration tasks."
+  },
+  "environmental_regulations": {
+    "CWA_404": "Clean Water Act Section 404 — requires permits for discharge of dredged or fill material into waters of the US including wetlands.",
+    "CERCLA": "Comprehensive Environmental Response, Compensation, and Liability Act — governs cleanup of contaminated sites.",
+    "ESA_7": "Endangered Species Act Section 7 — requires consultation to ensure actions do not jeopardize listed species.",
+    "NEPA": "National Environmental Policy Act — requires environmental impact assessment for major federal actions.",
+    "SMCRA": "Surface Mining Control and Reclamation Act — regulates active mining and reclamation of abandoned mine lands.",
+    "33_CFR_332": "Compensatory Mitigation Rule — establishes standards for compensatory mitigation for unavoidable wetland losses."
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "project_types": {
+    "MINE_RECLAMATION": {
+      "description": "Restoration of abandoned mine lands including soil reconstruction, acid mine drainage treatment, and revegetation with native species.",
+      "typical_performance_standards": [
+        {"metric": "native vegetative cover", "target": "70% by Year 5", "measurement": "line-point intercept transects"},
+        {"metric": "soil stability", "target": "erosion rates within 20% of reference site", "measurement": "erosion pins and sediment traps"},
+        {"metric": "species diversity", "target": "Shannon index >= 1.5 by Year 5", "measurement": "species richness plots"},
+        {"metric": "soil pH", "target": "pH 6.0-7.5 in root zone", "measurement": "annual soil sampling"}
+      ],
+      "common_tasks": ["site assessment", "hazardous materials removal", "soil reconstruction", "erosion control", "revegetation", "monitoring"],
+      "key_regulations": ["SMCRA", "CERCLA", "Clean Water Act Section 404"],
+      "typical_timeline": "3-7 years including monitoring",
+      "required_expertise": ["restoration ecologist", "geotechnical engineer", "hydrologist", "certified erosion control specialist"],
+      "common_risks": ["acid mine drainage", "heavy metal contamination", "soil compaction", "invasive species colonization"],
+      "seasonal_constraints": {"planting_window": "April-June or September-October depending on region"}
+    },
+    "WETLAND_RESTORATION": {
+      "description": "Creation, enhancement, or restoration of wetland ecosystems including hydrological restoration and native wetland plant establishment.",
+      "typical_performance_standards": [
+        {"metric": "hydrology", "target": "14+ consecutive days of inundation/saturation during growing season", "measurement": "shallow groundwater wells and staff gauges"},
+        {"metric": "wetland vegetation cover", "target": "80% cover by hydrophytic species by Year 3", "measurement": "quadrat sampling"},
+        {"metric": "invasive species", "target": "< 5% cover by invasive species", "measurement": "visual estimation in plots"}
+      ],
+      "common_tasks": ["hydrologic assessment", "grading and earthwork", "hydrology restoration", "wetland planting", "invasive species control", "monitoring"],
+      "key_regulations": ["Clean Water Act Section 404", "33 CFR 332 (Compensatory Mitigation Rule)", "ESA Section 7"],
+      "typical_timeline": "5-10 years including monitoring",
+      "required_expertise": ["wetland ecologist", "hydrologist", "botanist", "wildlife biologist"],
+      "common_risks": ["hydrology failure", "invasive species dominance", "sedimentation", "adjacent land use changes"],
+      "seasonal_constraints": {"planting_window": "dormant season preferred for woody species; spring for emergent plugs"}
+    },
+    "WILDFIRE_REHAB": {
+      "description": "Post-fire emergency stabilization and long-term rehabilitation including erosion control, native revegetation, and watershed stabilization.",
+      "typical_performance_standards": [
+        {"metric": "ground cover", "target": "60% ground cover by Year 2", "measurement": "line-point intercept"},
+        {"metric": "erosion control", "target": "no rills > 4 inches deep", "measurement": "field inspection"},
+        {"metric": "native species establishment", "target": "50% of seeded species present by Year 3", "measurement": "species inventory plots"}
+      ],
+      "common_tasks": ["burned area assessment", "emergency erosion control", "hazard tree removal", "aerial and ground seeding", "invasive species treatment", "monitoring"],
+      "key_regulations": ["NEPA", "ESA Section 7", "BLM BAER protocols", "NRCS Emergency Watershed Protection"],
+      "typical_timeline": "1-5 years",
+      "required_expertise": ["fire ecologist", "erosion control specialist", "native seed specialist", "wildlife biologist"],
+      "common_risks": ["reburn", "post-fire flooding and debris flows", "invasive annual grass invasion", "seed supply limitations"],
+      "seasonal_constraints": {"planting_window": "first fall/winter after fire for seeding; spring for live plantings"}
+    },
+    "SUPERFUND_REMEDIATION": {
+      "description": "Cleanup and ecological restoration of contaminated sites under CERCLA, including contaminant removal, capping, and habitat restoration.",
+      "typical_performance_standards": [
+        {"metric": "contaminant levels", "target": "below risk-based cleanup levels per ROD", "measurement": "soil and groundwater sampling"},
+        {"metric": "vegetative cover on cap", "target": "75% cover by Year 3", "measurement": "transect sampling"},
+        {"metric": "ecological function", "target": "habitat supports target wildlife species", "measurement": "wildlife surveys"}
+      ],
+      "common_tasks": ["remedial investigation", "contaminant removal or capping", "soil amendment", "revegetation", "long-term monitoring", "institutional controls"],
+      "key_regulations": ["CERCLA", "NCP (40 CFR 300)", "RCRA", "state environmental regulations"],
+      "typical_timeline": "5-30+ years",
+      "required_expertise": ["environmental engineer", "toxicologist", "restoration ecologist", "hydrogeologist"],
+      "common_risks": ["contaminant rerelease", "cap failure", "groundwater plume migration", "regulatory changes"],
+      "seasonal_constraints": {"planting_window": "varies by region; avoid planting during active remediation phases"}
+    },
+    "RIPARIAN_RESTORATION": {
+      "description": "Restoration of stream corridors, floodplains, and riparian buffers including channel reconstruction, bank stabilization, and native riparian planting.",
+      "typical_performance_standards": [
+        {"metric": "riparian canopy cover", "target": "60% canopy closure by Year 7", "measurement": "densiometer readings"},
+        {"metric": "bank stability", "target": "< 10% bare eroding banks", "measurement": "BEHI assessment"},
+        {"metric": "fish passage", "target": "unimpeded passage for target species", "measurement": "passage assessment"}
+      ],
+      "common_tasks": ["geomorphic assessment", "channel design", "bank stabilization", "floodplain reconnection", "riparian planting", "fish passage installation", "monitoring"],
+      "key_regulations": ["Clean Water Act Section 404", "ESA Section 7", "state water quality standards", "Wild and Scenic Rivers Act"],
+      "typical_timeline": "3-10 years",
+      "required_expertise": ["fluvial geomorphologist", "fisheries biologist", "riparian ecologist", "hydraulic engineer"],
+      "common_risks": ["channel avulsion", "flood damage to installed structures", "beaver activity", "upstream land use changes"],
+      "seasonal_constraints": {"planting_window": "dormant season for pole plantings and container stock; in-stream work limited to fish timing windows"}
+    },
+    "INVASIVE_SPECIES": {
+      "description": "Removal and long-term management of invasive plant or animal species with native community re-establishment.",
+      "typical_performance_standards": [
+        {"metric": "invasive species cover", "target": "< 5% cover by target invasive by Year 3", "measurement": "belt transects"},
+        {"metric": "native species recovery", "target": "50% native species cover by Year 3", "measurement": "quadrat sampling"},
+        {"metric": "reinvasion", "target": "no new invasive patches > 0.1 acre", "measurement": "annual survey"}
+      ],
+      "common_tasks": ["invasive species mapping", "herbicide treatment", "manual/mechanical removal", "native seeding/planting", "biological control", "monitoring and retreatment"],
+      "key_regulations": ["NEPA", "ESA Section 7", "FIFRA (pesticide use)", "state noxious weed laws"],
+      "typical_timeline": "3-10+ years (ongoing management)",
+      "required_expertise": ["invasive species specialist", "certified pesticide applicator", "restoration ecologist", "botanist"],
+      "common_risks": ["herbicide drift", "non-target species impacts", "reinvasion from adjacent lands", "seed bank persistence"],
+      "seasonal_constraints": {"planting_window": "herbicide timing varies by target species phenology; native planting in fall or spring"}
+    },
+    "RANGELAND_RESTORATION": {
+      "description": "Restoration of degraded rangelands and grasslands including sage-grouse habitat, native grass establishment, and grazing management transitions.",
+      "typical_performance_standards": [
+        {"metric": "perennial grass cover", "target": "40% perennial grass cover by Year 5", "measurement": "line-point intercept"},
+        {"metric": "sagebrush canopy", "target": "15-25% canopy cover for sage-grouse habitat", "measurement": "line intercept"},
+        {"metric": "bare ground", "target": "< 30% bare ground", "measurement": "line-point intercept"}
+      ],
+      "common_tasks": ["rangeland health assessment", "grazing exclusion fencing", "soil preparation", "native seeding", "sagebrush planting", "invasive annual grass control", "monitoring"],
+      "key_regulations": ["BLM Land Health Standards", "ESA (sage-grouse)", "Taylor Grazing Act", "NEPA"],
+      "typical_timeline": "5-15 years",
+      "required_expertise": ["range ecologist", "wildlife biologist", "native seed specialist", "grazing management specialist"],
+      "common_risks": ["drought", "wildfire", "invasive annual grass invasion", "unauthorized grazing"],
+      "seasonal_constraints": {"planting_window": "late fall dormant seeding preferred in Great Basin; spring in northern regions"}
+    },
+    "REFORESTATION": {
+      "description": "Replanting and restoration of forest ecosystems including thinning, prescribed fire, tree planting, and carbon sequestration projects.",
+      "typical_performance_standards": [
+        {"metric": "tree survival", "target": ">= 80% survival at Year 3", "measurement": "survival plots"},
+        {"metric": "stocking density", "target": "200-400 trees per acre (species dependent)", "measurement": "fixed-area plots"},
+        {"metric": "canopy closure", "target": "40% canopy closure by Year 10", "measurement": "densiometer or remote sensing"}
+      ],
+      "common_tasks": ["site preparation", "seedling procurement", "planting", "browse protection", "competing vegetation control", "thinning", "monitoring"],
+      "key_regulations": ["National Forest Management Act", "NEPA", "ESA Section 7", "state forest practice acts"],
+      "typical_timeline": "5-20 years",
+      "required_expertise": ["silviculturist", "forest ecologist", "nursery specialist", "wildlife biologist"],
+      "common_risks": ["drought mortality", "browse damage", "competing vegetation", "disease and insects", "wildfire"],
+      "seasonal_constraints": {"planting_window": "late winter to early spring when seedlings are dormant; fall planting in mild climates"}
+    }
+  },
+  "ecoregion_seed_guidance": {
+    "Great Basin": {
+      "native_grasses": ["bluebunch wheatgrass", "Indian ricegrass", "bottlebrush squirreltail", "basin wildrye", "Sandberg bluegrass"],
+      "native_forbs": ["Lewis flax", "yarrow", "globemallow", "penstemon", "lupine"],
+      "native_shrubs": ["Wyoming big sagebrush", "rubber rabbitbrush", "bitterbrush", "four-wing saltbush"]
+    },
+    "Pacific Northwest": {
+      "native_grasses": ["blue wildrye", "California brome", "tufted hairgrass", "Roemer's fescue"],
+      "native_forbs": ["self-heal", "yarrow", "columbine", "Oregon sunshine"],
+      "native_shrubs": ["snowberry", "Oregon grape", "red-osier dogwood", "salal"]
+    },
+    "Rocky Mountain": {
+      "native_grasses": ["slender wheatgrass", "mountain brome", "blue wildrye", "Idaho fescue"],
+      "native_forbs": ["yarrow", "lupine", "aster", "blanketflower"],
+      "native_shrubs": ["mountain big sagebrush", "serviceberry", "chokecherry", "mountain mahogany"]
+    },
+    "Great Plains": {
+      "native_grasses": ["big bluestem", "switchgrass", "little bluestem", "sideoats grama", "blue grama"],
+      "native_forbs": ["purple coneflower", "black-eyed Susan", "wild bergamot", "prairie clover"],
+      "native_shrubs": ["leadplant", "wild plum", "smooth sumac"]
+    },
+    "Southwest Desert": {
+      "native_grasses": ["alkali sacaton", "sand dropseed", "bush muhly", "blue grama"],
+      "native_forbs": ["desert marigold", "globemallow", "brittlebush", "desert zinnia"],
+      "native_shrubs": ["creosote bush", "four-wing saltbush", "desert willow", "apache plume"]
+    }
+  },
+  "far_references": {
+    "source_selection": "FAR Part 15",
+    "evaluation_factors": "FAR 15.304",
+    "proposal_evaluation": "FAR 15.305",
+    "adjectival_ratings": {
+      "Outstanding": "Proposal meets requirements and indicates an exceptional approach and understanding of the requirements. Strengths far outweigh any weaknesses. Risk of unsuccessful performance is very low.",
+      "Good": "Proposal meets requirements and indicates a thorough approach and understanding. Strengths outweigh weaknesses. Risk of unsuccessful performance is low.",
+      "Acceptable": "Proposal meets requirements and indicates an adequate approach and understanding. Strengths and weaknesses are offsetting or will have little impact. Risk of unsuccessful performance is no worse than moderate.",
+      "Marginal": "Proposal does not clearly meet requirements and has not demonstrated an adequate approach. Weaknesses outweigh strengths. Risk of unsuccessful performance is high.",
+      "Unacceptable": "Proposal does not meet requirements and contains significant deficiencies. Proposal is not awardable."
+    }
+  }
+}
