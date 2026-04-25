@@ -42,7 +42,10 @@ def call_llm(system_prompt: str, user_message: str, expect_json: bool = True) ->
         try:
             json.loads(raw)
         except json.JSONDecodeError:
-            logger.warning("LLM response was not valid JSON, retrying with nudge")
+            logger.warning(
+                "LLM response was not valid JSON, retrying. Preview: %s",
+                raw[:300],
+            )
             raw = _raw_call(
                 client,
                 system_prompt,
@@ -72,10 +75,14 @@ def _raw_call(client, system_prompt: str, user_message: str) -> str:
         )
         return resp.content[0].text
     elif settings.llm_provider == "gemini":
-        combined = f"{system_prompt}\n\n{user_message}"
+        from google.genai import types
+
         resp = client.models.generate_content(
             model=settings.llm_model,
-            contents=combined,
+            contents=user_message,
+            config=types.GenerateContentConfig(
+                system_instruction=system_prompt,
+            ),
         )
         return resp.text
     else:
