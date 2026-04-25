@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     # LLM
     llm_provider: str = "gemini"  # "anthropic", "openai", or "gemini"
-    llm_model: str = "gemini-flash-latest"
+    llm_model: str = "gemini-2.5-flash"
     anthropic_api_key: str = ""
     openai_api_key: str = ""
     gemini_api_key: str = ""

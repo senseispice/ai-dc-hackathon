@@ -32,8 +32,9 @@ class CrustDataClient:
 
     def _headers(self) -> dict:
         return {
-            "Authorization": f"Bearer {self._api_key}",
-            "Content-Type": "application/json",
+            "authorization": f"Bearer {self._api_key}",
+            "content-type": "application/json",
+            "x-api-version": "2025-11-01",
         }
 
     async def _post(self, path: str, payload: dict) -> dict:
@@ -50,40 +51,136 @@ class CrustDataClient:
 
     async def search_companies(
         self,
-        query: str,
-        naics_codes: list[str] | None = None,
-        location: str | None = None,
+        company_name: str | None = None,
+        industry: str | None = None,
+        country: str | None = None,
         min_employees: int | None = None,
         max_employees: int | None = None,
+        limit: int = 10,
     ) -> list[dict]:
-        if self._mock:
-            return self._mock_search_companies(query)
+        """Search companies via /company/search.
 
-        payload: dict = {"query": query}
-        if naics_codes:
-            payload["naics_codes"] = naics_codes
-        if location:
-            payload["location"] = location
+        Uses CrustData's filter-based search. Filters can match on
+        basic_info.name, taxonomy.professional_network_industry,
+        locations.country, headcount.total, etc.
+        """
+        if self._mock:
+            return self._mock_search_companies(company_name or "")
+
+        conditions: list[dict] = []
+        if company_name:
+            conditions.append({
+                "field": "basic_info.name",
+                "type": "(.)",  # contains
+                "value": company_name,
+            })
+        if industry:
+            conditions.append({
+                "field": "taxonomy.professional_network_industry",
+                "type": "=",
+                "value": industry,
+            })
+        if country:
+            conditions.append({
+                "field": "locations.country",
+                "type": "=",
+                "value": country,
+            })
         if min_employees is not None:
-            payload["min_employees"] = min_employees
+            conditions.append({
+                "field": "headcount.total",
+                "type": "=>",
+                "value": min_employees,
+            })
         if max_employees is not None:
-            payload["max_employees"] = max_employees
-        return (await self._post("/screener/company/search", payload)).get("results", [])
+            conditions.append({
+                "field": "headcount.total",
+                "type": "=<",
+                "value": max_employees,
+            })
+
+        payload: dict = {"limit": limit}
+        if len(conditions) == 1:
+            payload["filters"] = conditions[0]
+        elif len(conditions) > 1:
+            payload["filters"] = {"op": "and", "conditions": conditions}
+
+        payload["fields"] = [
+            "crustdata_company_id",
+            "basic_info.name",
+            "basic_info.primary_domain",
+            "basic_info.employee_count_range",
+            "basic_info.year_founded",
+            "basic_info.industries",
+            "headcount.total",
+            "locations.country",
+            "locations.headquarters",
+            "funding.total_investment_usd",
+            "revenue.estimated.lower_bound_usd",
+            "revenue.estimated.upper_bound_usd",
+        ]
+
+        result = await self._post("/company/search", payload)
+        return result.get("companies", [])
 
     async def enrich_company(
         self,
         domain: str | None = None,
         company_name: str | None = None,
     ) -> dict:
+        """Look up a single company by name or domain via /company/search.
+
+        Returns the first match with full field data, normalized to
+        the keys the rest of the codebase expects.
+        """
         if self._mock:
             return self._mock_enrich_company(company_name or domain or "")
 
-        payload: dict = {}
+        # Search by domain first (more precise), fall back to name
         if domain:
-            payload["domain"] = domain
-        if company_name:
-            payload["company_name"] = company_name
-        return await self._post("/screener/company/enrich", payload)
+            filters = {
+                "field": "basic_info.primary_domain",
+                "type": "=",
+                "value": domain,
+            }
+        elif company_name:
+            filters = {
+                "field": "basic_info.name",
+                "type": "(.)",
+                "value": company_name,
+            }
+        else:
+            return {}
+
+        result = await self._post("/company/search", {
+            "filters": filters,
+            "limit": 1,
+        })
+
+        companies = result.get("companies", [])
+        if not companies:
+            return {}
+
+        co = companies[0]
+        # Normalize to the flat keys verify_contractor expects
+        basic = co.get("basic_info", {})
+        hc = co.get("headcount", {})
+        funding = co.get("funding", {})
+        rev = co.get("revenue", {}).get("estimated", {})
+        return {
+            "employee_count": hc.get("total"),
+            "employee_count_range": basic.get("employee_count_range"),
+            "funding_total": funding.get("total_investment_usd"),
+            "revenue_estimate": (
+                f"${rev['lower_bound_usd']:,}-${rev['upper_bound_usd']:,}"
+                if rev.get("lower_bound_usd") and rev.get("upper_bound_usd")
+                else None
+            ),
+            "founded_year": basic.get("year_founded"),
+            "industries": basic.get("industries", []),
+            "headquarters": co.get("locations", {}).get("headquarters"),
+            "domain": basic.get("primary_domain"),
+        }
 
     async def search_people(
         self,
