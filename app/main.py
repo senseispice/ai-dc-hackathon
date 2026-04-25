@@ -2,10 +2,14 @@
 
 from __future__ import annotations
 
-from fastapi import FastAPI, File, Form, UploadFile
+import tempfile
+from pathlib import Path
+
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.models.schemas import EvaluationReport, PWS
+from app.models.schemas import EvaluationReport, ProjectType, PWS, RFPDocument
+from app.tools.document_parser import parse_document
 
 app = FastAPI(
     title="Land Restoration Acquisition Platform",
@@ -21,6 +25,15 @@ app.add_middleware(
 )
 
 
+async def _read_upload(file: UploadFile) -> str:
+    """Save an UploadFile to a temp file and extract its text."""
+    suffix = Path(file.filename).suffix if file.filename else ".txt"
+    with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+        tmp.write(await file.read())
+        tmp_path = tmp.name
+    return parse_document(tmp_path)
+
+
 @app.get("/api/health")
 async def health():
     """Health check."""
@@ -28,13 +41,23 @@ async def health():
 
 
 @app.post("/api/generate-pws", response_model=PWS)
-async def generate_pws(
+async def generate_pws_endpoint(
     rfp: UploadFile = File(...),
     project_type: str = Form(...),
 ):
     """Run Phase 1 only — generate a PWS from an uploaded RFP."""
-    # TODO: save uploaded file, parse, run pws_generator agent, return PWS
-    raise NotImplementedError
+    from app.agents.pws_generator import generate_pws
+
+    try:
+        rfp_text = await _read_upload(rfp)
+        rfp_doc = RFPDocument(
+            title=Path(rfp.filename).stem if rfp.filename else "RFP",
+            project_type=ProjectType(project_type),
+            raw_text=rfp_text,
+        )
+        return await generate_pws(rfp_doc)
+    except ValueError as e:
+        raise HTTPException(status_code=422, detail=str(e))
 
 
 @app.post("/api/evaluate", response_model=EvaluationReport)
@@ -44,12 +67,17 @@ async def evaluate(
     project_type: str = Form(...),
 ):
     """Run the full 3-phase pipeline and return an EvaluationReport."""
-    # TODO: save files, parse, run supervisor pipeline, return report
-    raise NotImplementedError
+    from app.agents.supervisor import run_pipeline
 
-
-@app.get("/api/status/{job_id}")
-async def job_status(job_id: str):
-    """Check status of a long-running evaluation job."""
-    # TODO: implement background job tracking
-    raise NotImplementedError
+    try:
+        rfp_text = await _read_upload(rfp)
+        sow_texts = {
+            Path(sow.filename).stem if sow.filename else f"contractor_{i}": (
+                await _read_upload(sow)
+            )
+            for i, sow in enumerate(sows)
+        }
+        state = await run_pipeline(rfp_text, project_type, sow_texts)
+        return state.report
+    except ValueError as e:
+        raise HTTPException(status_code=422, detail=str(e))
